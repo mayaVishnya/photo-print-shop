@@ -62,7 +62,23 @@
                 </div>
                 <button class="more-btn">MORE</button>
             </section>
-            <section id="contact"></section>
+            <section id="contact">
+                <form id="contact-form">
+                    <fieldset>
+                        <h6>CONTACT ME</h6>
+                        <label for="name">name:
+                            <input type="name" id="name" name="name" required />
+                        </label>
+                        <label for="email">email:
+                            <input type="email" id="email" name="email" required />
+                        </label>
+                        <label for="message">message:
+                            <textarea id="message" name="message" rows="6" cols="17"></textarea>
+                        </label>
+                        <div class="center"><button id="send-btn" type="submit">SEND</button></div>
+                    </fieldset>
+                </form>
+            </section>
         </main>
         <footer>
             <p class="small-text">Photograph &copy; Dominik Janousek. Reproduction prohibited without the author’s permission.</p>
