@@ -114,13 +114,19 @@ h2 {
     z-index: 2;
     margin-top: 50px;
     border: none;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--text-color);
+    color: var(--background-color);
+    opacity: 1;
 }
 
 .order-btn:hover {
-    background-color: var(--text-color);
-    color: var(--background-color);
+    opacity: 0.9;
+    /* background-color: var(--text-color);
+    color: var(--background-color); */
+}
+
+.order-btn:active {
+    opacity: 0.8;
 }
 
 /*  INTRO section */
