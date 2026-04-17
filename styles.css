@@ -137,9 +137,10 @@ h2 {
 .bio {
     margin: auto;
     margin-top: 25px;
-    max-width: 700px;
+    max-width: 690px;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
+    line-height: 25px;
 }
 
 /* PORTFOLIO section */
@@ -154,6 +155,7 @@ h2 {
     height: 540px;
 }
 
+/* BLUR images! */
 .photo {
     height: 540px;
     width: 19.5vw;
@@ -211,20 +213,20 @@ h2 {
 }
 
 .prints-container {
-    width: 85vw;
+    width: 94vw;
     margin: auto;
 }
 
 .prints-container .row {
-    margin: 105px 0;
+    margin: 115px 0;
     /* margin-left: 52px; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
 
 .item {
-    height: 13.5vw;
-    width: 20vw;
+    height: 14.5vw;
+    width: 21.5vw;
     background-image: url('./images/hills.jpg');
     background-size: cover;
     background-position: center;
