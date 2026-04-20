@@ -169,12 +169,14 @@ h2 {
     margin-top: 20px;
     width: 183px;
     height: 500px;
+    filter: blur(1px);
 }
 
 .left-middle-img, .right-middle-img {
     margin-top: 20px;
     width: 290px;
     height: 500px;
+    filter: blur(1px);
 }
 
 .middle-img {
@@ -184,6 +186,7 @@ h2 {
 
 .photo:hover {
     opacity: 0.9;
+    filter: blur(0);
 }
 
 .middle-img:hover {
