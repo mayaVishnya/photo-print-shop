@@ -133,7 +133,11 @@
                         <label for="message">message:
                             <textarea id="message" name="message" rows="6" cols="17"></textarea>
                         </label>
-                        <div class="center"><button id="send-btn" type="submit">SEND</button></div>
+                        <div class="center">
+                            <button id="send-btn" type="submit" onclick="sendEmail()">
+                                SEND
+                            </button>
+                        </div>
                     </fieldset>
                 </form>
             </section>
@@ -163,5 +167,20 @@
                 <div class="small-text">Website code &copy; Maiia Vyshniakova.</div>
             </div>
         </footer>
+
+        <!-- Connecting EmailJS -->
+
+        <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+        </script>
+        <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "jJxcj0PryYSoWXzXt",
+            });
+        })();
+        </script>
+        
+        <script src="./script.js"></script>
     </body>
 </html>
