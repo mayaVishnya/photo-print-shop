@@ -1,3 +1,4 @@
+/* GLOBAL settings*/
 *,
 *::after,
 *::before {
@@ -407,6 +408,38 @@ hr {
 /* MOBILE OVERRIDES */
 
 @media screen and (max-width: 768px) {
+    /* GLOBAL Mobile Touch fixes*/
+    a, button, .item, .photo {
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    @media(hover: none) {
+        .item:hover,
+        .photo:hover,
+        .order-btn:hover,
+        .more-btn:hover,
+        .view-btn:hover,
+        #send-btn:hover,
+        a:hover {
+            opacity: 1;
+            transform: none;
+            text-decoration: none;
+        }
+
+        .item:active,
+        .photo:active,
+        button:active,
+        a:active {
+            opacity: 0.8;
+            transform: scale(0.98);
+        }
+    }
+
+    a {
+        display: block;
+        padding: 8px;
+    }
+
     /*  HERO section */
     .bg-image {
         width: 100%;
@@ -483,19 +516,39 @@ hr {
         display: none;
     }
 
+    .item-overlay {
+        /* initially shown */
+        opacity: 1;
+    }
+
+     .item:hover .item-overlay .view-btn {
+        opacity: 1;
+    }
+
     .view-btn {
-        width: 80px;
-        height: 35px;
-        font-size: 12px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        padding: 0;
+        font-size: 0;
+        color: transparent;
+        background-color: transparent;
+        opacity: 0;
+    }
+
+    .view-btn::after {
+        content: '\f0a9';
+        font-family: 'FontAwesome';
+        font-size: 25px;
+        color: var(--primary-color);
+    }
+
+    .view-btn:hover {
+        border: none;
     }
 
     .more-btn {
         margin-top: 20px;
-        width: 145px;
-        height: 50px;
-        background-color: var(--background-color);
-        color: var(--text-color);
-        border: 1px solid var(--text-color);
     }
 
     /* CONTACT section */
