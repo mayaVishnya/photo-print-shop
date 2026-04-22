@@ -1,3 +1,20 @@
+//   This script literally just checks if your browser is capable of hovering over items without clicking, basically if you have a mouse or not. 
+window.isMobile = function(){
+  if(window.matchMedia("(any-hover:none)").matches) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// Adding grip items on load
+const items = getItems();
+let isMobile = window.isMobile();
+let itemsPerRow = isMobile ? 1 : 4;
+let itemsTotal = isMobile ? 4 : 8;
+updateItems(itemsPerRow, items, itemsTotal);
+
+// Setting up contact form
 const contactForm = document.getElementById("contact-form");
 const sendBtn = document.getElementById("send-btn");
 let isSending = false;
@@ -54,3 +71,168 @@ function resetBtn() {
     sendBtn.disabled = false;
     sendBtn.innerText = "SEND";
 }
+
+function getItems() {
+    return [
+        {
+            id: 1,
+            name: "Irish Hills",
+            price: "from 30€",
+            publicId: "hills_wp2zti",
+            altText: "Hills at the coast of Ireland"
+        },
+        {
+            id: 2,
+            name: "Behind the curtain",
+            price: "from 30€",
+            publicId: "van_hntkqw",
+            altText: "Van"
+        },
+        {
+            id: 3,
+            name: "Something",
+            price: "from 30€",
+            publicId: "squirel_xnm2z6",
+            altText: "Squirel"
+        },
+        {
+            id: 4,
+            name: "Something",
+            price: "from 30€",
+            publicId: "small-bird_vrqzfe",
+            altText: "Small Birb"
+        },
+        {
+            id: 5,
+            name: "Something",
+            price: "from 30€",
+            publicId: "road_jviv50",
+            altText: "Road"
+        },
+        {
+            id: 6,
+            name: "Something",
+            price: "from 30€",
+            publicId: "horse_g3aglf",
+            altText: "Horse"
+        },
+        {
+            id: 7,
+            name: "Something",
+            price: "from 30€",
+            publicId: "bird_wdsmof",
+            altText: "Birb"
+        },
+        {
+            id: 8,
+            name: "Something",
+            price: "from 30€",
+            publicId: "hills_wp2zti",
+            altText: "Hills"
+        },
+        {
+            id: 9,
+            name: "Something",
+            price: "from 30€",
+            publicId: "van_hntkqw",
+            altText: "Van"
+        },
+        {
+            id: 10,
+            name: "Something",
+            price: "from 30€",
+            publicId: "bird_wdsmof",
+            altText: "Birb"
+        },
+        {
+            id: 11,
+            name: "Something",
+            price: "from 30€",
+            publicId: "horse_g3aglf",
+            altText: "Horse"
+        },
+        {
+            id: 12,
+            name: "Something",
+            price: "from 30€",
+            publicId: "road_jviv50",
+            altText: "Road"
+        },
+        {
+            id: 13,
+            name: "Something",
+            price: "from 30€",
+            publicId: "road_jviv50",
+            altText: "Road"
+        }
+    ]
+}
+
+// PRINT SHOP dynamic items
+// EXAMPLE IMG URL https://res.cloudinary.com/dtvkhhwwb/image/upload/hills_wp2zti.jpg 
+function updateItems (_itemsPerRow, _itemsArr, itemsTotal) {
+    const container = document.getElementById("prints-container");
+    let currentRow = null;
+    const itemsPerRow = _itemsPerRow;
+
+    container.innerHTML = '';
+    
+    const itemsArr = _itemsArr;
+    
+    itemsArr.forEach((item, index) => {
+        if (index >= itemsTotal) return;
+
+        // determine the row
+        if (!currentRow || currentRow.children.length >= itemsPerRow) {
+            currentRow = document.createElement("div");
+            currentRow.classList.add("row");
+            container.append(currentRow);
+        }
+        // create new item
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("item");
+    
+        // fetch image
+        const url = `https://res.cloudinary.com/dtvkhhwwb/image/upload/w_400,q_auto,f_auto/${item.publicId}.jpg`;
+        const img = document.createElement("img");
+        img.classList.add("item-img")
+        img.src = url;
+        if (item.altText != null) img.alt = item.altText;
+        img.loading = "lazy";
+    
+        // creating new overlay
+        const overlayDiv = document.createElement("div");
+        overlayDiv.classList.add("item-overlay");
+        overlayDiv.innerHTML = 
+            `<span id="name">${item.name}</span>
+            <span id="price">${item.price}</span>
+            <button id="view-btn">VIEW</button>`;
+    
+        //adding overlay and img to the item
+        itemDiv.append(img, overlayDiv);
+    
+        // adding items to the row
+        currentRow.append(itemDiv);
+    });
+}
+
+// Handling More/Less btn
+const moreBtn = document.getElementById("more-btn");
+let less = false;
+
+function onMoreBtnPressed() {
+    if (less) {
+        itemsTotal = isMobile ? 4 : 8;
+        updateItems(itemsPerRow, items, itemsTotal);
+        moreBtn.textContent = "MORE";
+        less = false;
+    } else {
+        itemsTotal += isMobile? itemsPerRow * 2 : itemsPerRow;
+        updateItems(itemsPerRow, items, itemsTotal);
+        if (itemsTotal > items.length) {
+            moreBtn.textContent = "LESS";
+            less = true;
+        }
+    }
+}
+
