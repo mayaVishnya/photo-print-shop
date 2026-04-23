@@ -161,91 +161,78 @@ function getItems() {
         {
             id: 1,
             name: "Irish Hills",
-            price: "from 30€",
             publicId: "hills_wp2zti",
             altText: "Hills at the coast of Ireland"
         },
         {
             id: 2,
             name: "Behind the curtain",
-            price: "from 30€",
             publicId: "van_hntkqw",
             altText: "Van"
         },
         {
             id: 3,
             name: "Something",
-            price: "from 30€",
             publicId: "squirel_xnm2z6",
             altText: "Squirel"
         },
         {
             id: 4,
             name: "Something",
-            price: "from 30€",
             publicId: "small-bird_vrqzfe",
             altText: "Small Birb"
         },
         {
             id: 5,
             name: "Something",
-            price: "from 30€",
             publicId: "road_jviv50",
             altText: "Road"
         },
         {
             id: 6,
             name: "Something",
-            price: "from 30€",
             publicId: "horse_g3aglf",
             altText: "Horse"
         },
         {
             id: 7,
             name: "Something",
-            price: "from 30€",
             publicId: "bird_wdsmof",
             altText: "Birb"
         },
         {
             id: 8,
             name: "Something",
-            price: "from 30€",
             publicId: "hills_wp2zti",
             altText: "Hills"
         },
         {
             id: 9,
             name: "Something",
-            price: "from 30€",
             publicId: "van_hntkqw",
             altText: "Van"
         },
         {
             id: 10,
             name: "Something",
-            price: "from 30€",
             publicId: "bird_wdsmof",
             altText: "Birb"
         },
         {
             id: 11,
             name: "Something",
-            price: "from 30€",
             publicId: "horse_g3aglf",
             altText: "Horse"
         },
         {
             id: 12,
             name: "Something",
-            price: "from 30€",
             publicId: "road_jviv50",
             altText: "Road"
         },
         {
             id: 13,
             name: "Something",
-            price: "from 30€",
             publicId: "road_jviv50",
             altText: "Road"
         }
@@ -296,7 +283,6 @@ function updateItems (_itemsPerRow, _itemsArr, itemsTotal) {
         overlayDiv.classList.add("item-overlay");
         overlayDiv.innerHTML = 
             `<span id="name">${item.name}</span>
-            <span id="price">${item.price}</span>
             <button id="view-btn">VIEW</button>`;
     
         //adding overlay and img to the item
