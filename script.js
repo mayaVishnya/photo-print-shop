@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-/* ORDER section */
+/* GALLERY section */
 
 function getItems() {
     return [
@@ -239,7 +239,7 @@ function getItems() {
     ]
 }
 
-// PRINT SHOP dynamic items
+// GALLERY dynamic items
 // EXAMPLE IMG URL https://res.cloudinary.com/dtvkhhwwb/image/upload/hills_wp2zti.jpg 
 function updateItems (_itemsPerRow, _itemsArr, itemsTotal) {
     const container = document.getElementById("prints-container");
