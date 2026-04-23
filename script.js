@@ -61,7 +61,6 @@ function updateFocus() {
     if (currentIndex < 0)
         currentIndex = 0;
 
-    console.log("currentIndex: ",currentIndex);
     carouselImages[currentIndex].classList.add('is-focused');
 
     return currentIndex;
@@ -161,79 +160,79 @@ if (carouselViewport) {
 function getItems() {
     return [
         {
-            id: 1,
+            id: 0,
             name: "Irish Hills",
             publicId: "hills_wp2zti",
             altText: "Hills at the coast of Ireland"
         },
         {
-            id: 2,
+            id: 1,
             name: "Behind the curtain",
             publicId: "van_hntkqw",
             altText: "Van"
         },
         {
-            id: 3,
+            id: 2,
             name: "Something",
             publicId: "squirel_xnm2z6",
             altText: "Squirel"
         },
         {
-            id: 4,
+            id: 3,
             name: "Something",
             publicId: "small-bird_vrqzfe",
             altText: "Small Birb"
         },
         {
-            id: 5,
+            id: 4,
             name: "Something",
             publicId: "road_jviv50",
             altText: "Road"
         },
         {
-            id: 6,
+            id: 5,
             name: "Something",
             publicId: "horse_g3aglf",
             altText: "Horse"
         },
         {
-            id: 7,
+            id: 6,
             name: "Something",
             publicId: "bird_wdsmof",
             altText: "Birb"
         },
         {
-            id: 8,
+            id: 7,
             name: "Something",
             publicId: "hills_wp2zti",
             altText: "Hills"
         },
         {
-            id: 9,
+            id: 8,
             name: "Something",
             publicId: "van_hntkqw",
             altText: "Van"
         },
         {
-            id: 10,
+            id: 9,
             name: "Something",
             publicId: "bird_wdsmof",
             altText: "Birb"
         },
         {
-            id: 11,
+            id: 10,
             name: "Something",
             publicId: "horse_g3aglf",
             altText: "Horse"
         },
         {
-            id: 12,
+            id: 11,
             name: "Something",
             publicId: "road_jviv50",
             altText: "Road"
         },
         {
-            id: 13,
+            id: 12,
             name: "Something",
             publicId: "road_jviv50",
             altText: "Road"
@@ -244,13 +243,13 @@ function getItems() {
 // GALLERY dynamic items
 // EXAMPLE IMG URL https://res.cloudinary.com/dtvkhhwwb/image/upload/hills_wp2zti.jpg 
 function updateItems (_itemsPerRow, _itemsArr, itemsTotal) {
-    const container = document.getElementById("prints-container");
+    const container = document.getElementById("gallery-container");
     if (!container) return;
 
     let currentRow = null;
     const itemsPerRow = _itemsPerRow;
 
-    container.innerHTML = '';
+    container.innerHTML = `<div id="item-modal"><div id="modal-content"></div></div>`;
     
     const itemsArr = _itemsArr;
     const newItemsNodes = []
@@ -285,7 +284,11 @@ function updateItems (_itemsPerRow, _itemsArr, itemsTotal) {
         overlayDiv.classList.add("item-overlay");
         overlayDiv.innerHTML = 
             `<span id="name">${item.name}</span>
-            <button id="view-btn">VIEW</button>`;
+            <button id= "view-btn-${item.id}" 
+                    class="view-btn" 
+                    onclick="onViewBtnPressed(this.id)">
+                    VIEW
+            </button>`;
     
         //adding overlay and img to the item
         itemDiv.append(img, overlayDiv);
@@ -331,6 +334,57 @@ function scrollToTopRow() {
 
     }, 150);
 }
+
+// Handling View btn
+const modal = document.getElementById("item-modal");
+
+function onViewBtnPressed(item_id) {
+    item_id = item_id.match(/(\d)/)[0];
+
+    const modalContent = document.getElementById("modal-content");
+
+    let isVertical = true;
+    const items = getItems();
+    const item = items.at(item_id);
+    
+    // fetch image
+    const url = `https://res.cloudinary.com/dtvkhhwwb/image/upload/w_400,q_auto,f_auto/${item.publicId}.jpg`;
+    const img = document.createElement("img");
+    img.src = url;
+    if (item.altText != null) img.alt = item.altText;
+    img.onload = function() {
+        console.log(this.naturalWidth, this.naturalHeight);
+        if (this.naturalWidth > this.naturalHeight) {
+            console.log("HERRE");
+            isVertical = false;
+        } else {
+            isVertical = true;
+        }
+        img.style.width = `${isVertical ? 350 : 550}px`;
+    
+        modalContent.innerHTML = `
+            <div class="name-close-div">
+                <span class="name">${item.name}</span>
+                <span class="close" onclick="onClosePressed()">&times;</span>
+            </div>
+        `;
+        modalContent.append(img);
+        
+        modalContent.style.margin = `${isVertical ? 5 : 10}% auto`;
+        modal.style.display = "block";
+    };
+}
+
+function onClosePressed() {
+    modal.style.display = "none";
+}
+
+// Close when clicking the background overlay ---
+modal.addEventListener('click', function(event) {
+    if (event.target === this) {
+        onClosePressed();
+    }
+});
 
 // Handling More/Less btn
 const moreBtn = document.getElementById("more-btn");
